@@ -16,31 +16,31 @@ export const getters = {
 
 export const actions = {
   showForm({ commit }) {
-    commit("changeUp");
+    commit("CHANGE_UP");
   },
   async loadCharacters({commit}) {
     try {
       const api = "https://rickandmortyapi.com/api/character";
-      const data = await (await axios.get(api)).data.results;
-      commit("SET_CHATRACTERS", data);
+      const response = await axios.get(api);
+      commit("SET_CHATRACTERS", response.data.results);
     } catch (error) {
       const err = new Error(error);
       console.error(err);
     }
-    // axios
-    //   .get("https://rickandmortyapi.com/api/character")
-    //   .then(res => {
-    //     state.commit("SET_CHATRACTERS",res.data.results)
-    //   })
-    //   .catch(e => console.error(e));
   },
+  registerCharacter({commit}, character){
+    commit("ADD_CHARACTER",character);
+  }
 };
 
 export const mutations = {
-  changeUp(state) {
+  CHANGE_UP(state) {
     state.up = !state.up;
   },
   SET_CHATRACTERS(state, characters) {
     state._characters = characters;
+  },
+  ADD_CHARACTER(state, newCharacter){
+    state._characters.unshift(newCharacter)
   }
 };
