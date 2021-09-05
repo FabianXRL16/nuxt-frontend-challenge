@@ -26,4 +26,3 @@ Nuxt.js frontend challenge
 
 ## Path not found
 ![Screenshot (56)](https://user-images.githubusercontent.com/49970548/132139405-daea950c-5312-4d7c-944f-ca487c499777.png)
-![Screenshot (57)](https://user-images.githubusercontent.com/49970548/132139413-99cdbf60-d343-4b2e-b5c5-ccac5577a921.png)
