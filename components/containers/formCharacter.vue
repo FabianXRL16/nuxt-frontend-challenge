@@ -1,21 +1,30 @@
 <template>
   <div class="md:w-2/3 w-11/12 h-5/6 p-8 bg-white rounded-xl relative">
     <upButton class="buttonUp" :icon="false" />
-    <form class=" h-full grid grid-cols-2" :v-model="valid">
+    <div class=" h-full grid grid-cols-2">
       <h1 class="text-2xl text-gray-500 text-center col-span-2">
         Register a new character
       </h1>
-      <input-custom class="col-span-2" label="Name" :rules="[rules.required]" />
-      <input-custom class="col-span-2" label="Specie" />
+      <input-custom class="col-span-2" v-model="name" label="Name" />
+      <input-custom class="col-span-2" v-model="specie" label="Specie" />
       <select-custom v-model="status" :options="statusOptions" label="Status" />
-      <select-custom v-model="gender" :options="gendersOptions" label="Gender" />
-      <input-custom class="col-span-2" label="Img" />
-      <baseButton
-        :disabled="!valid"
-        class="col-span-2 disabled:opacity-50"
-        label="Add"
+      <select-custom
+        v-model="gender"
+        :options="gendersOptions"
+        label="Gender"
       />
-    </form>
+      <input-custom class="col-span-2" v-model="img" label="Img" />
+      <div class="col-span-2 px-4">
+        <button
+        class=" rounded-xl w-full py-4 text-white text-xl"
+        :class=" validar ? 'bg-gray-500' : 'bg-blue-500'"
+        :disabled="validar"
+        @click="up"
+      >
+        Add of Character
+      </button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -34,17 +43,24 @@ export default {
   },
   data() {
     return {
-      valid: false,
+      name: "",
+      specie: "",
+      img: "",
       status: "",
       gender: "",
       statusOptions: ["Alive", "Dead", "Unknown"],
-      gendersOptions: ["Female", "Male"],
-      rules: {
-        required: (value) => !!value,
-        filled: (value) => value != null,
-        min: (value) => value >= 0,
-      },
+      gendersOptions: ["Female", "Male"]
     };
+  },
+  computed: {
+    validar() {
+      return this.name === '' || this.specie === '' || this.img ==='' || this.status === '' || this.gender === ''
+    }
+  },
+  methods:{
+    up(){
+      alert("Buena")
+    }
   }
 };
 </script>

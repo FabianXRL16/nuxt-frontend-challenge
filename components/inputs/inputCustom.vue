@@ -4,6 +4,7 @@
     <input
       class="outline-none bg-gray-200 px-4 text-gray-500 rounded-xl h-12"
       type="text"
+      v-model="inputModel"
     />
   </div>
 </template>
@@ -15,6 +16,17 @@ export default {
     label: {
       type: String,
       default: "Label"
+    },
+    value: String
+  },
+  computed:{
+    inputModel:{
+      get(){
+        return this.value
+      },
+      set(newValue){
+        this.$emit("input", newValue)
+      }
     }
   }
 };
