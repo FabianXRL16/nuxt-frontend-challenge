@@ -16,8 +16,6 @@
 <script>
 import headerTable from "@/components/general/headerTable";
 import characters from "@/components/items/characters";
-// import data from "../../src/api/characters.js";
-// import axios from "axios";
 export default {
   name: "ListCharacters",
   components: { headerTable, characters },
@@ -38,20 +36,6 @@ export default {
   created(){
     this.$store.dispatch("loadCharacters")
   }
-
-  // methods:{
-  //   getDataApi(){
-  //     axios.get('https://rickandmortyapi.com/api/character')
-  //     .then(response=>{
-  //       this.data = response.data.results
-  //       console.log(response.data.results)
-  //     })
-  //     .catch(e => {console.log(e)})
-  //   }
-  // },
-  // mounted(){
-  //   this.getDataApi()
-  // }
 };
 </script>
 

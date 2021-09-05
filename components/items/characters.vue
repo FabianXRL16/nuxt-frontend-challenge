@@ -1,7 +1,7 @@
 <template>
   <tr class="hover:bg-blue-200 md:hover:bg-blue-100">
     <td class="md:px-6 px-4 py-4 whitespace-nowrap rounded-l-xl">
-      <name-character :data="characterMainDetails" />
+      <name-character :name="character.name" :species="character.species" :image="character.image" :gender='character.gender' />
     </td>
     <td class="px-6 py-4 whitespace-nowrap hidden md:table-cell w-20">
       <status-character :status="character.status" />
@@ -39,12 +39,6 @@ export default {
   },
   data() {
     return {
-      characterMainDetails:{
-        name: this.character.name,
-        species: this.character.species,
-        gender: this.character.gender,
-        image: this.character.image,
-      }
     };
   }
 };
