@@ -6,7 +6,7 @@
         Register a new character
       </h1>
       <input-custom class="col-span-2" v-model="name" label="Name" />
-      <input-custom class="col-span-2" v-model="specie" label="Specie" />
+      <input-custom class="col-span-2" v-model="species" label="Specie" />
       <select-custom v-model="status" :options="statusOptions" label="Status" />
       <select-custom
         v-model="gender"
@@ -16,13 +16,13 @@
       <input-custom class="col-span-2" v-model="img" label="Img" />
       <div class="col-span-2 px-4">
         <button
-        class=" rounded-xl w-full py-4 text-white text-xl"
-        :class=" validar ? 'bg-gray-500' : 'bg-blue-500'"
-        :disabled="validar"
-        @click="up"
-      >
-        Add of Character
-      </button>
+          class=" rounded-xl w-full py-4 text-white text-xl"
+          :class="validar ? 'bg-gray-500' : 'bg-blue-500'"
+          :disabled="validar"
+          @click="addCharacter"
+        >
+          Add of Character
+        </button>
       </div>
     </div>
   </div>
@@ -44,24 +44,40 @@ export default {
   data() {
     return {
       name: "",
-      specie: "",
+      species: "",
       img: "",
       status: "",
       gender: "",
       statusOptions: ["Alive", "Dead", "Unknown"],
-      gendersOptions: ["Female", "Male"]
+      gendersOptions: ["Female", "Male"],
     };
   },
   computed: {
     validar() {
-      return this.name === '' || this.specie === '' || this.img ==='' || this.status === '' || this.gender === ''
+      return (
+        this.name === "" ||
+        this.specie === "" ||
+        this.status === "" ||
+        this.gender === ""
+      );
     }
   },
-  methods:{
-    up(){
-      alert("Buena")
+  methods: {
+    addCharacter() {
+      const today = new Date();
+      const created = today.toISOString();
+      if(this.img==="") this.img = "https://rickandmortyapi.com/api/character/avatar/19.jpeg"
+      this.$store.dispatch("registerCharacter",  {
+        name: this.name,
+        species: this.species,
+        image: this.img,
+        status: this.status,
+        gender: this.gender,
+        created
+      });
+      this.$store.dispatch("showForm");
     }
-  }
+  },
 };
 </script>
 
